@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>DzRevitTools by Dmitry Zuev</Name>
+		<Assembly>DzRevitTools\DzRevitToolsR22.dll</Assembly>
+		<FullClassName>DzRevitTools.App</FullClassName>
+		<AddInId>3D7972A4-79A9-41C9-8FDA-71DD6E2607B1</AddInId>
+		<VendorId>DZ</VendorId>
+		<VendorDescription>Предложения принимаются по адресу dimzuev@yandex.ru</VendorDescription>
+	</AddIn>
+</RevitAddIns>

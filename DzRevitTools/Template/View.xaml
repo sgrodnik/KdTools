@@ -1,0 +1,114 @@
+﻿<Window x:Class="DzRevitTools.Template.View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:DzRevitTools.Template"
+        mc:Ignorable="d"
+        Height="400" Width="300"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding Title}" Icon="{Binding Path=Icon}"
+        SizeToContent="Height"
+        SnapsToDevicePixels="True"
+        Background="WhiteSmoke"
+        ResizeMode="NoResize"
+        >
+
+    <Window.DataContext>
+        <vm:ViewModel />
+    </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ButtonRun}" Key="Enter" />
+        <KeyBinding Command="{Binding ButtonCancel}" Key="Esc" />
+    </Window.InputBindings>
+
+    <StackPanel>
+
+        <GroupBox Header="RadioButtons" Margin="5">
+            <StackPanel>
+                <RadioButton Content="RadioButton 1"
+                             IsChecked="{Binding Path=BoolFlagOne, Mode=TwoWay}"
+                             GroupName="Group1"
+                             Margin="2.5" />
+
+                <RadioButton Content="RadioButton 2"
+                             IsChecked="{Binding Path=BoolFlagTwo, Mode=TwoWay}"
+                             GroupName="Group1"
+                             Margin="2.5" />
+
+                <RadioButton IsChecked="{Binding Path=BoolFlagThree}"
+                             GroupName="Group1"
+                             Name="RadioButton3"
+                             Margin="2.5" >
+
+                    <RadioButton.Content>
+                        <TextBlock>
+                            <Run Text="RadioButton 3 complex:" />
+                            <Run Text="{Binding Path=AnIntegerCount}" />
+                            <Run Text=" pcs" />
+                        </TextBlock>
+                    </RadioButton.Content>
+
+                </RadioButton>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="ComboBox" Margin="5">
+            <StackPanel>
+                <ComboBox ItemsSource="{Binding CeilingTypes}"
+                          SelectedValue="{Binding SelectedCeilingTypeId, Mode=TwoWay}"
+                          SelectedValuePath="Id"
+                          Margin="2.5"
+                          DisplayMemberPath="Name"/>
+
+                <CheckBox IsChecked="{Binding IsCeilingSelected}"
+                          IsEnabled="{Binding IsChecked, ElementName=RadioButton3}"
+                          Content="CheckBox dependent on RadioButton3"
+                          Margin="2.5" />
+             </StackPanel>
+         </GroupBox>
+
+        <GroupBox Header="Ceiling height" Margin="5">
+            <StackPanel>
+                <RadioButton Content="Equal to the height of the room"
+                             IsChecked="{Binding Path=BoolFlagOne, Mode=TwoWay}"
+                             GroupName="Height"
+                             Margin="2.5" />
+
+                <Grid Margin="2.5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <RadioButton x:Name="CustomHeight"
+                                 Content="Fixed (from level, in mm):"
+                                 VerticalAlignment="Center"
+                                 GroupName="Height"/>
+                    <TextBox Text="{Binding SomeStrVar, Mode=TwoWay}"
+                             IsEnabled="{Binding IsChecked, ElementName=CustomHeight}"
+                             Margin="5,0,0,0"
+                             Grid.Column="1" />
+                </Grid>
+
+                <Label Content="TextBox Label:" Margin="0,-5" />
+                <TextBox Text="{Binding SomeStrVar, Mode=TwoWay}" Margin="2.5" />
+            </StackPanel>
+        </GroupBox>
+
+        <DockPanel Margin="8">
+
+            <Button Command="{Binding ButtonCancel}"
+                    Content="Cancel" DockPanel.Dock="Right" HorizontalAlignment="Left"
+                    Height="24" Width="85" Margin="5"/>
+
+            <Button Command="{Binding ButtonRun}"
+                    Content="OK" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                    ToolTip="Or press Enter"
+                    Height="24" Width="85" Margin="5"/>
+
+        </DockPanel>
+
+    </StackPanel>
+</Window>
