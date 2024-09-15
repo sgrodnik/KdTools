@@ -4,9 +4,9 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using DzRevitTools.BASE;
+using KdTools.BASE;
 
-namespace DzRevitTools.Template;
+namespace KdTools.Template;
 
 internal class ViewModel : BASE.ViewModel
 {

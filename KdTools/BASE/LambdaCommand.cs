@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DzRevitTools.BASE;
+namespace KdTools.BASE;
 
 internal class LambdaCommand : Command
 {

@@ -3,10 +3,10 @@ using System.Drawing;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using DzRevitTools.BASE;
-using static DzRevitTools.Utils;
+using KdTools.BASE;
+using static KdTools.Utils;
 
-namespace DzRevitTools.Template;
+namespace KdTools.Template;
 
 [Transaction(TransactionMode.Manual)]
 [Regeneration(RegenerationOption.Manual)]

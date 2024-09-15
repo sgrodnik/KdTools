@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <OutputPath>bin</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+    <RootNamespace>KdTools</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+
+    <Configurations>$(Configurations);D19;D20;D21;D22;D23;D24;D25</Configurations>
+    <Configurations>$(Configurations);R19;R20;R21;R22;R23;R24;R25</Configurations>
+    <RevitVersion>R$(Configuration.Replace("D", "").Replace("R", ""))</RevitVersion>
+    <AssemblyName>KdTools$(RevitVersion)</AssemblyName>
+    <DefineConstants>TRACE;$(RevitVersion)</DefineConstants>
+    <DefineConstants Condition="$(Configuration.Contains('D'))">$(DefineConstants);DEBUG</DefineConstants>
+
+    <NoWarn>$(NoWarn);MSB3246;MSB3270</NoWarn>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R25' "> <TargetFramework>net8.0-windows</TargetFramework> </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R19' "> <RevitSdkVersion>2019.2.3.2001</RevitSdkVersion> </PropertyGroup>
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R20' "> <RevitSdkVersion>2020.2.1.2001</RevitSdkVersion> </PropertyGroup>
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R21' "> <RevitSdkVersion>2021.1.40.95 </RevitSdkVersion> </PropertyGroup>
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R22' "> <RevitSdkVersion>2022.0.2.392 </RevitSdkVersion> </PropertyGroup>
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R23' "> <RevitSdkVersion>2023.0.0.2001</RevitSdkVersion> </PropertyGroup>
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R24' "> <RevitSdkVersion>2024.1.10.25 </RevitSdkVersion> </PropertyGroup>
+  <PropertyGroup Condition=" '$(RevitVersion)' == 'R25' "> <RevitSdkVersion>2025.0.2.419 </RevitSdkVersion> </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\CHANGELOG.md" Link="CHANGELOG.md" />
+    <None Include="..\README.md" Link="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="**\*.xaml" Exclude="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Page>
+    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+
+    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
+    <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
+
+    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
+    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autodesk.Revit.SDK" Version="$(RevitSdkVersion)" />
+    <PackageReference Include="Csv" Version="2.0.87" />
+    <PackageReference Include="System.Resources.Extensions" Version="4.6.0" />
+    <PackageReference Include="System.Management" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web.RegularExpressions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+</Project>

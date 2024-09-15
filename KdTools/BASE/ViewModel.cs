@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace DzRevitTools.BASE;
+namespace KdTools.BASE;
 
 internal abstract class ViewModel : INotifyPropertyChanged
 {

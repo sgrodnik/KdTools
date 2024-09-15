@@ -1,4 +1,4 @@
-﻿namespace DzRevitTools.Template;
+﻿namespace KdTools.Template;
 
 public partial class View
 {

@@ -151,13 +151,13 @@ MigrationBackup
 *.msi
 *.Designer.cs
 Setup/version.txt
-DzRevitTools/BuildDate.txt
+KdTools/BuildDate.txt
 Installer/version.txt
 *.7z
-DzRevitTools/Res/TgToken
+KdTools/Res/TgToken
 *.lnk
 *.code-workspace
-DzRevitTools/zip/
+KdTools/zip/
 !Installer/MsiInfo.exe
 .history/
 !.vscode/tasks.json

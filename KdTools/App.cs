@@ -1,9 +1,9 @@
 ﻿using System;
 using Autodesk.Revit.UI;
-using DzRevitTools.BASE;
-using static DzRevitTools.Utils;
+using KdTools.BASE;
+using static KdTools.Utils;
 
-namespace DzRevitTools;
+namespace KdTools;
 
 public class App : IExternalApplication
 {
@@ -11,7 +11,7 @@ public class App : IExternalApplication
     {
         LogStartRibbon();
 
-        var tabName = "DzRevitTools";
+        var tabName = "KdTools";
         tabName = Autodesk.Windows.ComponentManager.Ribbon.FindTab(tabName) is null
             ? tabName
             : tabName + "2";

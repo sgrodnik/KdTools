@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>KdTools by sgrodnik</Name>
+		<Assembly>KdTools\KdToolsR21.dll</Assembly>
+		<FullClassName>KdTools.App</FullClassName>
+		<AddInId>3D7972A4-79A9-41C9-8FDA-71DD6E2607B1</AddInId>
+		<VendorId>sg</VendorId>
+		<VendorDescription>Hi!</VendorDescription>
+	</AddIn>
+</RevitAddIns>

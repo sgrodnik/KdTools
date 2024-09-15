@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace DzRevitTools.BASE;
+namespace KdTools.BASE;
 
 internal abstract class Command : ICommand
 {

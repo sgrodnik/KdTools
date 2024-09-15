@@ -11,17 +11,17 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Autodesk.Revit.UI;
-using static DzRevitTools.Properties.Settings;
+using static KdTools.Properties.Settings;
 
-namespace DzRevitTools;
+namespace KdTools;
 
 public static class Utils
 {
     internal static string DayLogPath;
     private static readonly string Appdata =
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-    private static readonly string LogDir = Path.Combine(Appdata, "DzRevitTools", "Logs");
-    private static readonly string PathCommon = Path.Combine(LogDir, "DzRevitTools.log");
+    private static readonly string LogDir = Path.Combine(Appdata, "KdTools", "Logs");
+    private static readonly string PathCommon = Path.Combine(LogDir, "KdTools.log");
 
     internal static void Log(string s, bool newLineAndTime = true)
     {
@@ -38,9 +38,8 @@ public static class Utils
 
     internal static void LogStartRibbon()
     {
-        var buildDate = Properties.Resources.BuildDate.Replace("\r", "").Replace("\n", "");
         var pluginVersion = $"v{Assembly.GetExecutingAssembly().GetName().Version}";
-        var pluginVersionAndBuildDate = $"v{Assembly.GetExecutingAssembly().GetName().Version} ({buildDate})";
+        var pluginVersionAndBuildDate = $"v{Assembly.GetExecutingAssembly().GetName().Version} ({GetAssemblyBuildVersion()})";
         var runCounterAndPid = $"{++Default.CounterRunRibbon}:pid{Process.GetCurrentProcess().Id}";
         Default.Save();
         var clientId = $"{Environment.UserName}";
@@ -63,6 +62,16 @@ public static class Utils
         Log(string.Join(" - ", info));
     }
 
+    private static DateTime buildDate = default;
+    internal static string GetAssemblyBuildVersion()
+    {
+        if (buildDate != default)
+            return buildDate.ToString();
+        var version = Assembly.GetExecutingAssembly().GetName().Version;
+        buildDate = new DateTime(2000, 1, 1).AddDays(version.Build).AddSeconds(version.Revision * 2);
+        return buildDate.ToString();
+    }
+
     internal static void LogStartCommand(string title, ExternalCommandData commandData, long counterRun)
     {
         _watch = Stopwatch.StartNew();
@@ -72,8 +81,7 @@ public static class Utils
         var fileSize = GetProjectSize(commandData);
         var pid = "pid" + Process.GetCurrentProcess().Id;
         var memoryInfo = GetMemoryInfo();
-        var buildDate = Properties.Resources.BuildDate.Replace("\r", "").Replace("\n", "");
-        var pluginVersionAndBuildDate = $"v{Assembly.GetExecutingAssembly().GetName().Version} ({buildDate})";
+        var pluginVersionAndBuildDate = $"v{Assembly.GetExecutingAssembly().GetName().Version} ({GetAssemblyBuildVersion()})";
         var doc = commandData.Application.ActiveUIDocument.Document;
         var docPath = doc.PathName;
         Log($"{title} Start\t{common}:{counterRun}:{ribbon}:{pid}\t{docPath}\t{fileSize}\t{memoryInfo}\t{pluginVersionAndBuildDate}");

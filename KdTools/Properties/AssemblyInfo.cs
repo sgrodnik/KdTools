@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("DzRevitTools")]
+[assembly: AssemblyTitle("KdTools")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Dmitry Zuev")]
-[assembly: AssemblyProduct("DzRevitTools")]
-[assembly: AssemblyCopyright("Copyright © Dmitry Zuev 2023")]
+[assembly: AssemblyCompany("sg")]
+[assembly: AssemblyProduct("KdTools")]
+[assembly: AssemblyCopyright("Copyright © sg 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
