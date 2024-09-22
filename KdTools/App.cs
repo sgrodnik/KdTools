@@ -20,6 +20,7 @@ public class App : IExternalApplication
         var panelName = "Info";
         var panel = UicApp.CreateRibbonPanel(tabName, panelName);
         CreateButton(panel, new Template.Command());
+        CreateButton(panel, new DisallowFramingJoin.Command());
 
         Log($"{tabName} ribbon loaded\n");
     }

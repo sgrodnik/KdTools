@@ -13,5 +13,8 @@
     <Setting Name="CounterRunTemplate" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="CounterRunDisallowFramingJoin" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

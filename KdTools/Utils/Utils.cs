@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using static KdTools.Properties.Settings;
 
@@ -271,5 +272,22 @@ class UserException : Exception
     public override string ToString()
     {
         return base.Message;
+    }
+}
+
+public static class Selection
+{
+    public static IEnumerable<Element> GetElems(UIApplication uiApp, BuiltInCategory bic = BuiltInCategory.INVALID)
+    {
+        return uiApp.ActiveUIDocument.Selection.GetElementIds()
+            .Select(id => uiApp.ActiveUIDocument.Document.GetElement(id))
+            .Where(el => IsOfNeededCategory(el, bic));
+    }
+
+    private static bool IsOfNeededCategory(Element el, BuiltInCategory bic)
+    {
+        if (bic == BuiltInCategory.INVALID)
+            return true;
+        return el.Category.Id.IntegerValue == (int)bic;
     }
 }
