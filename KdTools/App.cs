@@ -21,6 +21,7 @@ public class App : IExternalApplication
         var panel = UicApp.CreateRibbonPanel(tabName, panelName);
         CreateButton(panel, new Template.Command());
         CreateButton(panel, new DisallowFramingJoin.Command());
+        CreateButton(panel, new CutFraming.Command());
 
         Log($"{tabName} ribbon loaded\n");
     }
