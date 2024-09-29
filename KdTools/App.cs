@@ -22,6 +22,7 @@ public class App : IExternalApplication
         CreateButton(panel, new Template.Command());
         CreateButton(panel, new DisallowFramingJoin.Command());
         CreateButton(panel, new CutFraming.Command());
+        CreateButton(panel, new CreateDimension.Command());
 
         Log($"{tabName} ribbon loaded\n");
     }
